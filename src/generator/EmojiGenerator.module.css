@@ -1,3 +1,27 @@
+.container, .viewer {
+  display: flex;
+}
+
+.container {
+  flex-flow: column nowrap;
+}
+
+.controls {
+  display: flex;
+  flex-flow: column nowrap;
+  font-size: 2em;
+}
+
+.selectedEmoji {
+  border: 0;
+  outline: 0;
+}
+
+.slider {
+  writing-mode: bt-lr; /* IE */
+  -webkit-appearance: slider-vertical; /* WebKit */
+}
+
 .spinEmoji {
   animation: App-logo-spin infinite 20s linear;
   height: 40vmin;
