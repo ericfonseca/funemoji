@@ -1,0 +1,22 @@
+.picker {
+  display: flex;
+  flex-flow: row wrap;
+  max-width: 300px;
+  min-width: 100px;
+}
+
+.cell {
+  font-size: 1.5em;
+  padding: 0.2em;
+}
+.cell:hover {
+  background: #eee;
+  cursor: pointer;
+}
+.cell.selected {
+  background: lightblue;
+}
+
+.cell.secondSelected {
+  background: lightcoral;
+}
