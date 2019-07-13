@@ -1,7 +1,7 @@
 .picker {
   display: flex;
   flex-flow: row wrap;
-  max-width: 300px;
+  max-width: 250px;
   min-width: 100px;
 }
 
@@ -13,10 +13,10 @@
   background: #eee;
   cursor: pointer;
 }
-.cell.selected {
+.cell.selectedTop {
   background: lightblue;
 }
 
-.cell.secondSelected {
+.cell.selectedBottom {
   background: lightcoral;
 }

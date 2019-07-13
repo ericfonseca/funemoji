@@ -27,23 +27,22 @@ export function EmojiGenerator() {
   ]);
   const [displayedEmoji, setDisplayedEmoji] = useState(logo);
   const fetchEmoji = useCallback(
-    e => setDisplayedEmoji(getEmojiURL(topEmoji, bottomEmoji, percentage)),
+    e => setDisplayedEmoji(getEmojiURL(topEmoji, bottomEmoji, 100 - percentage)),
     [topEmoji, bottomEmoji, percentage]
   );
   return (
     <div className={styles.container}>
       <div className={styles.viewer}>
         <EmojiPicker
-          selectedEmoji={
-            displayedPicker === EmojiPart.TOP ? topEmoji : bottomEmoji
-          }
+          selectedEmojiTop={topEmoji}
+          selectedEmojiBottom={bottomEmoji}
           onSelect={
             displayedPicker === EmojiPart.TOP ? setTopEmoji : setBottomEmoji
           }
         />
         <div className={styles.controls}>
           <button
-            className={styles.selectedEmoji}
+            className={styles.selectedEmojiTop}
             onClick={() => setDisplayedPicker(EmojiPart.TOP)}
           >
             {topEmoji}
@@ -57,15 +56,21 @@ export function EmojiGenerator() {
             onChange={onPercentageChange}
           />
           <button
-            className={styles.selectedEmoji}
+            className={styles.selectedEmojiBottom}
             onClick={() => setDisplayedPicker(EmojiPart.BOTTOM)}
           >
             {bottomEmoji}
           </button>
+        </div> 
+        <div className={styles.container2}>
+          <div>
+            <img src={displayedEmoji} className={styles.spinEmoji} alt="logo" />
+          </div>
+          <div>
+            <button onClick={fetchEmoji}>YEEET</button>
+          </div>
         </div>
-        <img src={displayedEmoji} className={styles.spinEmoji} alt="logo" />
       </div>
-      <button onClick={fetchEmoji}>YEEET</button>
     </div>
   );
 }
