@@ -1,9 +1,11 @@
 import React, { useCallback, useState } from "react";
 import logo from "./lol.png";
 import { getEmojiURL } from "./api";
-import emojis from "./emojis";
 import styles from "./EmojiGenerator.module.css";
 
+import Slider from '@material-ui/core/Slider';
+import { ThemeProvider } from '@material-ui/styles';
+import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 import { EmojiPicker } from "./EmojiPicker";
 
 enum EmojiPart {
@@ -11,12 +13,22 @@ enum EmojiPart {
   BOTTOM
 }
 
+const myCustomMuiTheme = createMuiTheme({
+  overrides: {
+    MuiSlider: {
+      track: { backgroundColor: 'lightcoral' },
+      rail: { backgroundColor: 'lightblue' },
+      thumb: { backgroundColor: 'darkgrey'}
+    },
+  }
+});
+
 export function EmojiGenerator() {
   const [percentage, setPercentage] = useState(50);
   const [topEmoji, setTopEmoji] = useState("😁");
   const [bottomEmoji, setBottomEmoji] = useState("😘");
   const [displayedPicker, setDisplayedPicker] = useState(EmojiPart.TOP);
-  const onPercentageChange = useCallback(e => setPercentage(e.target.value), [
+  const onPercentageChange = useCallback((_, value) => setPercentage(value), [
     setPercentage
   ]);
   const onTopEmojiChange = useCallback(e => setTopEmoji(e.target.value), [
@@ -47,14 +59,15 @@ export function EmojiGenerator() {
           >
             {topEmoji}
           </button>
-          <input
-            className={styles.slider}
-            type="range"
-            min={0}
-            max={100}
-            value={percentage}
-            onChange={onPercentageChange}
-          />
+          <ThemeProvider theme={myCustomMuiTheme}>
+            <Slider
+              min={0}
+              max={100}
+              value={percentage}
+              orientation="vertical"
+              onChange={onPercentageChange}
+            />
+          </ThemeProvider>
           <button
             className={styles.selectedEmojiBottom}
             onClick={() => setDisplayedPicker(EmojiPart.BOTTOM)}

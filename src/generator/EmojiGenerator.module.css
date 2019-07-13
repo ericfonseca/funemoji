@@ -19,7 +19,7 @@
 }
 
 .selectedEmojiTop {
-  border: 1;
+  border: 0;
   outline: 0;
   width: 1.5em;
   height: 1.5em;
@@ -28,17 +28,12 @@
 }
 
 .selectedEmojiBottom {
-  border: 1;
+  border: 0;
   outline: 0;
   width: 1.5em;
   height: 1.5em;
   border-radius: 50%;
   background: lightcoral;
-}
-
-.slider {
-  writing-mode: bt-lr; /* IE */
-  -webkit-appearance: slider-vertical; /* WebKit */
 }
 
 .spinEmoji {
